@@ -65,5 +65,5 @@ int main() {
 			}
 		}
 	}
-	cout << cnt << nl;
+	cout << cnt - 1 << nl;
 }
