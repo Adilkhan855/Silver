@@ -37,15 +37,12 @@ void solve() {
 	
 	sort(all(rng));
 	
-	set<int> st;
-	
-	int ans = n;
+	int mx = -(1e9 + 5), ans = n;
 	
 	for(auto &[l, r] : rng) {
 		r = -r;
-		auto it = st.lower_bound(r);
-		if(it != st.end()) ans--;
-		st.emplace(r);
+		if(r <= mx) ans--;
+		mx = max(mx, r);
 	}
 	
 	cout << ans << nl;
