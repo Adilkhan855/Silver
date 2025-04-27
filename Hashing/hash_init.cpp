@@ -2,7 +2,7 @@ mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
 #define rnd(l, r) uniform_int_distribution<int>(l, r)(rng)
  
 bool check(int x) {
-	for(int i = 2; i * i <= x; x++) {
+	for(int i = 2; i * i <= x; i++) {
 		if(x % i == 0) return false;
 	}
 	return true;
