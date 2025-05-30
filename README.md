@@ -1,2 +1,0 @@
-# Silver
-USACO SILVER SOLUTIONS
