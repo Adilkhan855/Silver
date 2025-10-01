@@ -18,7 +18,7 @@ int8_t lg[N];
 
 int sp[M][21][21], sum[M][21];
 
-int n, q, k, i, len, cen, j, l, r, m, tt;
+int n, q, k, i, len, cen, j, l, r, m;
 
 void add_self(int &a, const int &b) {
 	a += b;
@@ -54,6 +54,7 @@ void solve() {
 		len = (1 << i);
 		
 		for(cen = len; cen < n; cen += (len << 1)) {
+			// sp[cen] = sp[cen - 1] = vii(k + 1, vi(k + 1));
 			
 			for(l = 0; l <= k; l++) {
 				for(m = 0; m <= l; m++) {
@@ -76,6 +77,8 @@ void solve() {
 					sp[cen - 1][ a[cen - 1] ][l] = 1;
 				}
 			}
+			
+			// sp[cen] = mat[ a[cen] ];
 
 			for(j = cen + 1; j < min(n, cen + len); j++) {
 				// sp[j] = merge(mat[ a[j] ], sp[j - 1]);
@@ -94,6 +97,8 @@ void solve() {
 					}
 				}
 			}
+			
+			// sp[cen - 1] = mat[ a[cen - 1] ];
 
 			for(j = cen - 2; j >= max(0, cen - len); j--) {
 				// sp[j] = merge(sp[j + 1], mat[ a[j] ]);
@@ -114,6 +119,7 @@ void solve() {
 			}
 			
 			for(j = max(0, cen - len); j < min(n, cen + len); j++) {
+				// sum[j] = vi(k + 1);
 				for(l = 0; l <= k; l++) {
 					sum[j][l] = 0;
 					for(m = 0; m <= l; m++) {
@@ -125,6 +131,8 @@ void solve() {
 		}
 		
 		for(auto &[L, R, ID] : Q[i]) {
+			// multiply(sp[L]);
+			// multiply(sp[R]);
 			for(int m = 0; m <= k; m++) {
 				add_self(ans[ID], sum[R][m] * 1ll * sp[L][m][0] % mod);
 			}
