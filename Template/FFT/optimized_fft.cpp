@@ -60,6 +60,7 @@ vector<vector<cmpl>> w;
 vector<int> bit_rev;
 
 void precalc(int logn) {
+	bit_rev.resize(1 << logn);
 	w.resize(logn + 1);
 	w[0].resize(1, 1);
 	for(int l = 1; l <= logn; l++) {
@@ -75,11 +76,6 @@ void precalc(int logn) {
 			}
 		}
 	}
-	int n = (1 << logn);
-	bit_rev.resize(n);
-	for(int i = 1; i < n; i++) {
-		bit_rev[i] = (bit_rev[i >> 1] >> 1) | ((i & 1) << (logn - 1));
-	}
 }
 
 void fft(vector<cmpl> &P, bool inv = false) {
@@ -90,6 +86,7 @@ void fft(vector<cmpl> &P, bool inv = false) {
 	while((1 << logn) < n) logn++;
 	
 	for(int i = 0; i < n; i++) {
+		bit_rev[i] = (bit_rev[i >> 1] >> 1) | ((i & 1) << (logn - 1));
 		if(i < bit_rev[i]) {
 			swap(P[i], P[bit_rev[i]]);
 		}
