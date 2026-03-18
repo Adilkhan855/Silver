@@ -131,6 +131,8 @@ void solve() {
 				if(top2 == 0) {
 					top2 = 3 - beak;
 				}
+			} else {
+				is = 0;
 			}
 		} else {
 			if(sz1 >= 2) {
@@ -151,6 +153,8 @@ void solve() {
 				if(top1 == 0) {
 					top1 = 3 - beak;
 				}
+			} else {
+				is = 0;
 			}
 		}
 		
